@@ -1,5 +1,5 @@
 import { isLoggedIn, getUser } from "../utils/storage";
-import { logout } from "../api/auth";
+import { logout } from "../../../src/api/auth";
 
 export function mountNav(placeholderId = "nav-placeholder"): void {
   const el = document.getElementById(placeholderId);

@@ -1,4 +1,4 @@
-import { api } from "./http";
+import { api } from "../http";
 import { setToken, setApiKey, setUser, clearAuth } from "../utils/storage";
 import type { ApiResponse, User, Media } from "../types";
 

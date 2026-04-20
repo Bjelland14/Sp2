@@ -1,5 +1,5 @@
 import { api } from "./http";
-import { setToken, setApiKey, setUser, clearAuth } from "../utils/storage";
+import { setToken, setApiKey, setUser, clearAuth } from "./storage";
 import type { ApiResponse, User, Media } from "../types";
 
 interface RegisterPayload {

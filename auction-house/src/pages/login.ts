@@ -1,5 +1,5 @@
 import { mountNav } from "../components/nav";
-import { login } from "../api/auth";
+import { login } from "../api/auth/auth";
 import { redirectIfLoggedIn } from "../utils/auth-guard";
 import { getParam } from "../utils/url";
 import { toast } from "../components/toast";

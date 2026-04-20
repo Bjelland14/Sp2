@@ -1,5 +1,5 @@
 import { mountNav } from "../components/nav";
-import { register, login } from "../api/auth";
+import { register, login } from "../api/auth/auth";
 import { redirectIfLoggedIn } from "../utils/auth-guard";
 import { validateEmail, validatePassword, showError, clearAllErrors } from "../utils/validation";
 import { toast } from "../components/toast";
