@@ -1,5 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
-import "./pages/listing";
+import "./pages/listings";
+
+import "./styles/main.css";
 
