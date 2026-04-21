@@ -3,133 +3,150 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Listing</title>
+  <title>Create Listing | Auction House</title>
 </head>
 <body class="bg-light">
 
-  <header>
-    <nav class="navbar navbar-expand-lg bg-white border-bottom">
+  <header class="border-bottom bg-white">
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
         <a class="navbar-brand fw-bold" href="index.html">Auction House</a>
+
         <div class="ms-auto d-flex gap-2">
-          <a href="profile.html" class="btn btn-outline-dark">Profile</a>
-          <a href="index.html" class="btn btn-outline-primary">Back to listings</a>
+          <a href="profile.html" class="btn btn-outline-dark btn-sm">Profile</a>
+          <a href="index.html" class="btn btn-outline-primary btn-sm">Back to listings</a>
         </div>
       </div>
     </nav>
   </header>
 
-  <main class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-8">
-        <div class="card shadow-sm">
-          <div class="card-body p-4">
-            <h1 class="mb-3">Create Listing</h1>
-            <p class="text-muted mb-4">
-              Fill in the form below to create a new auction listing.
-            </p>
-
-            <form id="createListingForm" class="row g-3">
-              <div class="col-12">
-                <label for="title" class="form-label">Title</label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  class="form-control"
-                  placeholder="Enter listing title"
-                  required
-                />
+  <main class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4 p-md-5">
+              <div class="mb-4">
+                <h1 class="h2 mb-2">Create Listing</h1>
+                <p class="text-muted mb-0">
+                  Fill in the form below to create a new auction listing.
+                </p>
               </div>
 
-              <div class="col-12">
-                <label for="description" class="form-label">Description</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  class="form-control"
-                  rows="5"
-                  placeholder="Describe your item"
-                  required
-                ></textarea>
-              </div>
+              <form id="createListingForm" class="row g-3">
+                <div class="col-12">
+                  <label for="title" class="form-label fw-semibold">Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    class="form-control"
+                    placeholder="Enter listing title"
+                    required
+                  />
+                </div>
 
-              <div class="col-12">
-                <label for="deadline" class="form-label">Deadline</label>
-                <input
-                  type="datetime-local"
-                  id="deadline"
-                  name="deadline"
-                  class="form-control"
-                  required
-                />
-              </div>
+                <div class="col-12">
+                  <label for="description" class="form-label fw-semibold">Description</label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    class="form-control"
+                    rows="5"
+                    placeholder="Describe your item"
+                    required
+                  ></textarea>
+                </div>
 
-              <div class="col-12">
-                <h2 class="h5 mt-3">Images</h2>
-                <p class="text-muted">Add minimum 5 and maximum 10 image URLs.</p>
-              </div>
+                <div class="col-12">
+                  <label for="deadline" class="form-label fw-semibold">Deadline</label>
+                  <input
+                    type="datetime-local"
+                    id="deadline"
+                    name="deadline"
+                    class="form-control"
+                    required
+                  />
+                  <div class="form-text">
+                    Choose the auction end date and time.
+                  </div>
+                </div>
 
-              <div class="col-12 col-md-6">
-                <label for="image1" class="form-label">Image URL 1</label>
-                <input type="url" id="image1" name="image1" class="form-control" required />
-              </div>
+                <div class="col-12 mt-4">
+                  <div class="border rounded-4 p-3 p-md-4 bg-white">
+                    <h2 class="h5 mb-2">Images</h2>
+                    <p class="text-muted small mb-3">
+                      Add a minimum of 5 and a maximum of 10 direct image URLs.
+                    </p>
 
-              <div class="col-12 col-md-6">
-                <label for="image2" class="form-label">Image URL 2</label>
-                <input type="url" id="image2" name="image2" class="form-control" required />
-              </div>
+                    <div class="row g-3">
+                      <div class="col-12 col-md-6">
+                        <label for="image1" class="form-label">Image URL 1</label>
+                        <input type="url" id="image1" name="image1" class="form-control" required />
+                        <div class="form-text">Paste a direct image link, for example .jpg or .png.</div>
+                      </div>
 
-              <div class="col-12 col-md-6">
-                <label for="image3" class="form-label">Image URL 3</label>
-                <input type="url" id="image3" name="image3" class="form-control" required />
-              </div>
+                      <div class="col-12 col-md-6">
+                        <label for="image2" class="form-label">Image URL 2</label>
+                        <input type="url" id="image2" name="image2" class="form-control" required />
+                      </div>
 
-              <div class="col-12 col-md-6">
-                <label for="image4" class="form-label">Image URL 4</label>
-                <input type="url" id="image4" name="image4" class="form-control" required />
-              </div>
+                      <div class="col-12 col-md-6">
+                        <label for="image3" class="form-label">Image URL 3</label>
+                        <input type="url" id="image3" name="image3" class="form-control" required />
+                      </div>
 
-              <div class="col-12 col-md-6">
-                <label for="image5" class="form-label">Image URL 5</label>
-                <input type="url" id="image5" name="image5" class="form-control" required />
-              </div>
+                      <div class="col-12 col-md-6">
+                        <label for="image4" class="form-label">Image URL 4</label>
+                        <input type="url" id="image4" name="image4" class="form-control" required />
+                      </div>
 
-              <div class="col-12 col-md-6">
-                <label for="image6" class="form-label">Image URL 6</label>
-                <input type="url" id="image6" name="image6" class="form-control" />
-              </div>
+                      <div class="col-12 col-md-6">
+                        <label for="image5" class="form-label">Image URL 5</label>
+                        <input type="url" id="image5" name="image5" class="form-control" required />
+                      </div>
 
-              <div class="col-12 col-md-6">
-                <label for="image7" class="form-label">Image URL 7</label>
-                <input type="url" id="image7" name="image7" class="form-control" />
-              </div>
+                      <div class="col-12 col-md-6">
+                        <label for="image6" class="form-label">Image URL 6</label>
+                        <input type="url" id="image6" name="image6" class="form-control" />
+                      </div>
 
-              <div class="col-12 col-md-6">
-                <label for="image8" class="form-label">Image URL 8</label>
-                <input type="url" id="image8" name="image8" class="form-control" />
-              </div>
+                      <div class="col-12 col-md-6">
+                        <label for="image7" class="form-label">Image URL 7</label>
+                        <input type="url" id="image7" name="image7" class="form-control" />
+                      </div>
 
-              <div class="col-12 col-md-6">
-                <label for="image9" class="form-label">Image URL 9</label>
-                <input type="url" id="image9" name="image9" class="form-control" />
-              </div>
+                      <div class="col-12 col-md-6">
+                        <label for="image8" class="form-label">Image URL 8</label>
+                        <input type="url" id="image8" name="image8" class="form-control" />
+                      </div>
 
-              <div class="col-12 col-md-6">
-                <label for="image10" class="form-label">Image URL 10</label>
-                <input type="url" id="image10" name="image10" class="form-control" />
-              </div>
+                      <div class="col-12 col-md-6">
+                        <label for="image9" class="form-label">Image URL 9</label>
+                        <input type="url" id="image9" name="image9" class="form-control" />
+                      </div>
 
-              <div class="col-12 d-flex gap-2 mt-3">
-                <button type="submit" class="btn btn-primary">Create Listing</button>
-                <a href="index.html" class="btn btn-outline-secondary">Cancel</a>
-              </div>
-            </form>
+                      <div class="col-12 col-md-6">
+                        <label for="image10" class="form-label">Image URL 10</label>
+                        <input type="url" id="image10" name="image10" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 d-flex flex-wrap gap-2 mt-4">
+                  <button type="submit" class="btn btn-primary">Create Listing</button>
+                  <a href="index.html" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+              </form>
+
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 
+  <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

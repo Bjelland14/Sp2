@@ -1,3 +1,25 @@
 body {
   font-family: system-ui, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+form .form-control {
+  min-height: 44px;
+  border-radius: 0.75rem;
+}
+
+textarea.form-control {
+  min-height: 120px;
+}
+
+.btn {
+  border-radius: 0.75rem;
+}
+
+label {
+  margin-bottom: 0.35rem;
 }
