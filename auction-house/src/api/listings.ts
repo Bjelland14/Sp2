@@ -1,4 +1,4 @@
-const API_BASE = "https://api.noroff.dev/api/v2";
+const API_BASE = "https://v2.api.noroff.dev";
 
 export async function getListings() {
   const response = await fetch(`${API_BASE}/auction/listings`);
