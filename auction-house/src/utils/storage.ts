@@ -4,6 +4,8 @@ const TOKEN_KEY = "nf_auction_token";
 const API_KEY_KEY = "nf_auction_api_key";
 const USER_KEY = "nf_auction_user";
 
+// --- Token ---
+
 export function getToken(): string | null {
   return localStorage.getItem(TOKEN_KEY);
 }
@@ -11,6 +13,8 @@ export function getToken(): string | null {
 export function setToken(token: string): void {
   localStorage.setItem(TOKEN_KEY, token);
 }
+
+// --- API Key (used later for v2 requests) ---
 
 export function getApiKey(): string | null {
   return localStorage.getItem(API_KEY_KEY);
@@ -20,9 +24,12 @@ export function setApiKey(key: string): void {
   localStorage.setItem(API_KEY_KEY, key);
 }
 
+// --- User ---
+
 export function getUser(): User | null {
   const raw = localStorage.getItem(USER_KEY);
   if (!raw) return null;
+
   try {
     return JSON.parse(raw) as User;
   } catch {
@@ -34,9 +41,20 @@ export function setUser(user: User): void {
   localStorage.setItem(USER_KEY, JSON.stringify(user));
 }
 
+// --- Combined auth helper (cleaner for login) ---
+
+export function saveAuth(token: string, user: User): void {
+  setToken(token);
+  setUser(user);
+}
+
+// --- Auth state ---
+
 export function isLoggedIn(): boolean {
   return Boolean(getToken());
 }
+
+// --- Logout / clear ---
 
 export function clearAuth(): void {
   localStorage.removeItem(TOKEN_KEY);

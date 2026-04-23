@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+
+  
+</head>
+
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/index.html">
+        Auction House
+      </a>
+
+      <div class="d-flex gap-2">
+        <a href="/index.html" class="btn btn-outline-secondary">
+          Home
+        </a>
+        <a href="/register.html" class="btn btn-primary">
+          Register
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="container mt-4 mt-md-5" style="max-width: 500px;">
+    <h1 class="mb-4 text-center">Login</h1>
+
+    <p class="text-muted small mt-2 text-center">
+      Log in to create listings, manage your profile, and place bids.
+    </p>
+
+    <!-- Message -->
+    <div id="message"></div>
+
+    <!-- Login form -->
+    <form id="loginForm" class="card p-4 shadow-sm">
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="you@stud.noroff.no"
+          required
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          placeholder="Enter your password"
+          required
+        />
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary w-100">
+        Login
+      </button>
+    </form>
+
+    <!-- Register link -->
+    <p class="text-center mt-3">
+        Don’t have an account?
+    <a href="/register.html" class="btn btn-outline-primary ms-2">
+        Register
+  </a>
+</p>
+
+  <!-- Script -->
+    <script type="module" src="/src/main.ts"></script>
+
+</body>
+</html>
