@@ -1,6 +1,8 @@
 import { loginUser } from "../api/login";
+import { getProfile } from "../api/profile";
+import { createApiKey } from "../api/apiKey";
 import { validateLoginForm } from "../utils/validateLoginForm";
-import { saveAuth } from "../utils/storage";
+import { saveAuth, setApiKey } from "../utils/storage";
 
 export function initLoginPage() {
   const form = document.querySelector<HTMLFormElement>("#loginForm");
@@ -8,15 +10,15 @@ export function initLoginPage() {
 
   if (!form || !messageContainer) return;
 
+  form.noValidate = true;
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    // Get form values
     const formData = new FormData(form);
-    const email = String(formData.get("email"));
-    const password = String(formData.get("password"));
+    const email = String(formData.get("email") ?? "");
+    const password = String(formData.get("password") ?? "");
 
-    // Validate input
     const errors = validateLoginForm(email, password);
 
     if (Object.keys(errors).length > 0) {
@@ -25,24 +27,34 @@ export function initLoginPage() {
     }
 
     try {
-      // Call API
-      const user = await loginUser({ email, password });
+      // 1. Login
+      const loginData = await loginUser({ email, password });
 
-      // Save token + user in localStorage
-      saveAuth(user.accessToken, user);
+      // 2. Create API key
+      const apiKey = await createApiKey(loginData.accessToken);
+      setApiKey(apiKey);
 
-      // Show success message
-      showMessage("Login successful!", "success", messageContainer);
+      // 3. Fetch full profile (credits)
+      const profile = await getProfile(
+        loginData.name,
+        loginData.accessToken,
+        apiKey
+      );
+
+      // 4. Save auth
+      saveAuth(loginData.accessToken, profile);
+
+      showMessage("Login successful! Redirecting...", "success", messageContainer);
 
       form.reset();
 
-      // Redirect to homepage
       setTimeout(() => {
         window.location.href = "/index.html";
-      }, 1500);
+      }, 1200);
 
     } catch (error) {
-      // Show error from API
+      console.error("Login error:", error);
+
       showMessage(
         error instanceof Error ? error.message : "Login failed",
         "error",
@@ -52,14 +64,13 @@ export function initLoginPage() {
   });
 }
 
-// Helper function for messages
 function showMessage(
   message: string,
   type: "success" | "error",
   container: HTMLDivElement
 ) {
   container.innerHTML = `
-    <div class="alert alert-${type === "success" ? "success" : "danger"}">
+    <div class="alert alert-${type === "success" ? "success" : "danger"} mb-3">
       ${message}
     </div>
   `;

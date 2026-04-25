@@ -7,3 +7,4 @@ import "./pages/create";
 import "./pages/listingDetail";
 import "./pages/login";
 import "./pages/register";
+import "./pages/profile";

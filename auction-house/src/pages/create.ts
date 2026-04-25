@@ -1,4 +1,7 @@
+import { authGuard } from "../utils/authGuard";
 import { createListing } from "../api/listings";
+
+authGuard();
 
 console.log("Create page loaded");
 
