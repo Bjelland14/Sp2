@@ -16,15 +16,9 @@ export async function registerUser(body: RegisterBody) {
   });
 
   const json = await response.json();
-  console.log("Register response:", json); // 🔍 DEBUG
 
   if (!response.ok) {
-    const message =
-      json?.errors?.[0]?.message ||
-      json?.message ||
-      "Could not register user";
-
-    throw new Error(message);
+    throw new Error(json?.errors?.[0]?.message || "Could not register user");
   }
 
   return json.data;
