@@ -38,17 +38,22 @@ export async function getProfileListings(
   token: string,
   apiKey: string
 ) {
-  const response = await fetch(`${API_BASE}/auction/profiles/${name}/listings`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "X-Noroff-API-Key": apiKey,
-    },
-  });
+  const response = await fetch(
+    `${API_BASE}/auction/profiles/${name}/listings`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    }
+  );
 
   const json = await response.json();
 
   if (!response.ok) {
-    throw new Error(json?.errors?.[0]?.message || "Failed to fetch profile listings");
+    throw new Error(
+      json?.errors?.[0]?.message || "Failed to fetch profile listings"
+    );
   }
 
   return json.data;
@@ -72,7 +77,9 @@ export async function getProfileBids(
   const json = await response.json();
 
   if (!response.ok) {
-    throw new Error(json?.errors?.[0]?.message || "Failed to fetch profile bids");
+    throw new Error(
+      json?.errors?.[0]?.message || "Failed to fetch profile bids"
+    );
   }
 
   return json.data;
@@ -97,7 +104,9 @@ export async function updateProfile(
   const json = await response.json();
 
   if (!response.ok) {
-    throw new Error(json?.errors?.[0]?.message || "Failed to update profile");
+    throw new Error(
+      json?.errors?.[0]?.message || "Failed to update profile"
+    );
   }
 
   return json.data;

@@ -4,6 +4,7 @@ import {
   getProfile,
   getProfileListings,
   getProfileBids,
+  updateProfile,
 } from "../api/profile";
 
 authGuard();
@@ -33,11 +34,11 @@ async function loadProfilePage() {
 
     renderProfile(profile, listings, bids);
   } catch (error) {
-    console.error("Error loading profile:", error);
+    console.error(error);
 
     profileContainer.innerHTML = `
       <div class="alert alert-danger">
-        Could not load profile.
+        Could not load profile
       </div>
     `;
   }
@@ -47,102 +48,110 @@ function renderProfile(profile: any, listings: any[], bids: any[]) {
   if (!profileContainer) return;
 
   const credits = profile.credits ?? 0;
-  const avatarUrl = profile.avatar?.url;
-  const bio = profile.bio || "No bio added yet.";
 
   profileContainer.innerHTML = `
-    <section class="card shadow-sm p-4 mb-4">
-      <div class="d-flex flex-column flex-md-row align-items-center gap-4">
+    <section class="card p-4 mb-4">
+      <img
+        src="${profile.banner?.url || "https://placehold.co/800x200"}"
+        style="height:200px;object-fit:cover;"
+        class="mb-3 w-100"
+      />
+
+      <div class="d-flex gap-3 align-items-center">
         <img
-          src="${avatarUrl || "https://placehold.co/150x150?text=User"}"
-          alt="${profile.avatar?.alt || profile.name}"
+          src="${profile.avatar?.url || "https://placehold.co/150"}"
           class="rounded-circle"
-          width="150"
-          height="150"
-          style="object-fit: cover;"
+          width="100"
+          height="100"
         />
 
         <div>
-          <h1 class="h3 mb-2">${profile.name}</h1>
-          <p class="text-muted mb-2">${profile.email ?? ""}</p>
-          <p class="mb-2">${bio}</p>
-          <p class="fw-bold mb-0">Credits: ${credits.toLocaleString()}</p>
+          <h2>${profile.name}</h2>
+          <p>${profile.bio || "No bio yet"}</p>
+          <p><strong>Credits:</strong> ${credits}</p>
+
+          <button id="editBtn" class="btn btn-outline-primary btn-sm">
+            Edit profile
+          </button>
         </div>
       </div>
     </section>
 
-    <section class="mb-4">
-      <h2 class="h4 mb-3">My listings</h2>
-      ${renderListings(listings)}
+    <section id="editSection" class="card p-4 mb-4 d-none">
+      <form id="editForm">
+        <textarea id="bio" class="form-control mb-2" placeholder="Bio">${profile.bio || ""}</textarea>
+        <input id="avatar" class="form-control mb-2" placeholder="Avatar URL" value="${profile.avatar?.url || ""}">
+        <input id="banner" class="form-control mb-2" placeholder="Banner URL" value="${profile.banner?.url || ""}">
+        <button class="btn btn-primary">Save</button>
+      </form>
     </section>
 
     <section class="mb-4">
-      <h2 class="h4 mb-3">Listings I have bid on</h2>
-      ${renderBids(bids)}
+      <h3>My listings</h3>
+      ${
+        listings.length === 0
+          ? "<p>No listings yet</p>"
+          : listings
+              .map(
+                (l) => `
+        <div class="card mb-2 p-2">
+          ${l.title}
+        </div>`
+              )
+              .join("")
+      }
+    </section>
+
+    <section>
+      <h3>Bids</h3>
+      ${
+        bids.length === 0
+          ? "<p>No bids yet</p>"
+          : bids
+              .map(
+                (b) => `
+        <div class="card mb-2 p-2">
+          ${b.listing?.title} - ${b.amount}
+        </div>`
+              )
+              .join("")
+      }
     </section>
   `;
-}
 
-function renderListings(listings: any[]) {
-  if (!listings || listings.length === 0) {
-    return `<div class="alert alert-secondary">You have not created any listings yet.</div>`;
-  }
+  // 🔧 enkel edit logikk
+  const editBtn = document.querySelector("#editBtn");
+  const editSection = document.querySelector("#editSection");
+  const form = document.querySelector("#editForm");
 
-  return `
-    <div class="row g-3">
-      ${listings
-        .map(
-          (listing) => `
-            <div class="col-md-6">
-              <div class="card h-100 shadow-sm">
-                <img
-                  src="${listing.media?.[0]?.url || "https://placehold.co/600x400?text=No+Image"}"
-                  class="card-img-top"
-                  alt="${listing.media?.[0]?.alt || listing.title}"
-                  style="height: 180px; object-fit: cover;"
-                />
-                <div class="card-body">
-                  <h3 class="h5">${listing.title}</h3>
-                  <p class="text-muted small mb-2">
-                    Ends: ${new Date(listing.endsAt).toLocaleDateString()}
-                  </p>
-                  <a href="listing.html?id=${listing.id}" class="btn btn-outline-primary btn-sm">
-                    View listing
-                  </a>
-                </div>
-              </div>
-            </div>
-          `
-        )
-        .join("")}
-    </div>
-  `;
-}
+  editBtn?.addEventListener("click", () => {
+    editSection?.classList.toggle("d-none");
+  });
 
-function renderBids(bids: any[]) {
-  if (!bids || bids.length === 0) {
-    return `<div class="alert alert-secondary">You have not placed any bids yet.</div>`;
-  }
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  return `
-    <div class="list-group">
-      ${bids
-        .map((bid) => {
-          const listing = bid.listing;
+    const user = getUser();
+    const token = getToken();
+    const apiKey = getApiKey();
 
-          return `
-            <a
-              href="listing.html?id=${listing?.id}"
-              class="list-group-item list-group-item-action"
-            >
-              <div class="d-flex justify-content-between">
-                <strong>${listing?.title || "Listing"}</strong>
-                <span>${bid.amount.toLocaleString()} credits</span>
-              </div>
-            </a>
-          `;
-        })
-        .join("")}
-    </div>
-  `;
+    if (!user || !token || !apiKey) return;
+
+    const bio = (document.querySelector("#bio") as HTMLTextAreaElement).value;
+    const avatar = (document.querySelector("#avatar") as HTMLInputElement).value;
+    const banner = (document.querySelector("#banner") as HTMLInputElement).value;
+
+    try {
+      await updateProfile(user.name, token, apiKey, {
+        bio,
+        avatar: { url: avatar },
+        banner: { url: banner },
+      });
+
+      loadProfilePage();
+    } catch (err) {
+      console.error(err);
+      alert("Update failed");
+    }
+  });
 }

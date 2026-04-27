@@ -4,9 +4,9 @@ import { getUser, isLoggedIn, clearAuth } from "../utils/storage";
 
 let allListings: any[] = [];
 
-const listingGrid = document.querySelector("#listingGrid");
-const searchForm = document.querySelector("#searchForm");
-const searchInput = document.querySelector("#searchInput");
+const listingGrid = document.querySelector<HTMLElement>("#listingGrid");
+const searchForm = document.querySelector<HTMLFormElement>("#searchForm");
+const searchInput = document.querySelector<HTMLInputElement>("#searchInput");
 const authStatus = document.querySelector<HTMLDivElement>("#authStatus");
 
 function renderAuthStatus() {
@@ -24,9 +24,7 @@ function renderAuthStatus() {
   const credits = user?.credits ?? 0;
 
   authStatus.innerHTML = `
-    <span class="text-muted small">
-      Credits: ${credits.toLocaleString()}
-    </span>
+    <span class="text-muted small">Credits: ${credits.toLocaleString()}</span>
     <a href="profile.html" class="btn btn-outline-primary btn-sm">
       ${user?.name ?? "Profile"}
     </a>
@@ -35,22 +33,19 @@ function renderAuthStatus() {
     </button>
   `;
 
-  const logoutBtn = document.querySelector<HTMLButtonElement>("#logoutBtn");
-
-  logoutBtn?.addEventListener("click", () => {
+  document.querySelector<HTMLButtonElement>("#logoutBtn")?.addEventListener("click", () => {
     clearAuth();
     window.location.href = "index.html";
   });
 }
 
 function renderListings(listings: any[]) {
-  if (!(listingGrid instanceof HTMLElement)) return;
+  if (!listingGrid) return;
 
   listingGrid.innerHTML = "";
 
   if (listings.length === 0) {
-    listingGrid.innerHTML =
-      '<div class="alert alert-secondary">No listings found.</div>';
+    listingGrid.innerHTML = `<div class="alert alert-secondary">No listings found.</div>`;
     return;
   }
 
@@ -60,36 +55,35 @@ function renderListings(listings: any[]) {
 }
 
 function filterListings(searchTerm: string) {
-  const normalizedTerm = searchTerm.trim().toLowerCase();
+  const term = searchTerm.trim().toLowerCase();
 
-  if (!normalizedTerm) {
+  if (!term) {
     renderListings(allListings);
     return;
   }
 
-  const filteredListings = allListings.filter((listing) =>
-    listing.title?.toLowerCase().includes(normalizedTerm)
+  renderListings(
+    allListings.filter((listing) =>
+      listing.title?.toLowerCase().includes(term)
+    )
   );
-
-  renderListings(filteredListings);
 }
 
 async function loadListings() {
-  if (!(listingGrid instanceof HTMLElement)) return;
+  if (!listingGrid) return;
+
+  listingGrid.innerHTML = `<p>Loading listings...</p>`;
 
   try {
     allListings = await getListings();
     renderListings(allListings);
   } catch (error) {
     console.error("Error loading listings:", error);
-    listingGrid.innerHTML = "<p>Could not load listings</p>";
+    listingGrid.innerHTML = `<div class="alert alert-danger">Could not load listings.</div>`;
   }
 }
 
-if (
-  searchForm instanceof HTMLFormElement &&
-  searchInput instanceof HTMLInputElement
-) {
+if (searchForm && searchInput) {
   searchForm.addEventListener("submit", (event) => {
     event.preventDefault();
     filterListings(searchInput.value);
@@ -101,4 +95,4 @@ if (
 }
 
 renderAuthStatus();
-loadListings();
+loadListings();c
