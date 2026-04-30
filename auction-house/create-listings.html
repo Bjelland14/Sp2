@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AuctionHouse – Create Listing</title>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <main class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+
+        <h2 id="page-title" class="fw-bold mb-4">Create a Listing</h2>
+
+        <div id="form-message" hidden></div>
+
+        <div class="card shadow-sm border-0" style="border-radius: 10px;">
+          <div class="card-body p-4">
+            <form id="listing-form" novalidate>
+
+              <div class="mb-3">
+                <label for="title" class="form-label fw-semibold" style="font-size: 0.88rem;">
+                  Title <span class="text-danger">*</span>
+                </label>
+                <input type="text" id="title" class="form-control"
+                       placeholder="e.g. Vintage camera" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="description" class="form-label fw-semibold" style="font-size: 0.88rem;">Description</label>
+                <textarea id="description" class="form-control" rows="3"
+                          placeholder="Describe what you're selling…"></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="ends-at" class="form-label fw-semibold" style="font-size: 0.88rem;">
+                  Auction deadline <span class="text-danger">*</span>
+                </label>
+                <input type="datetime-local" id="ends-at" class="form-control" required>
+                <div class="form-text">Must be a future date.</div>
+              </div>
+
+              <!-- Images -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold" style="font-size: 0.88rem;">Images</label>
+                <div class="form-text mb-2">Add one or more image URLs.</div>
+
+                <div class="row g-2 mb-1 px-1">
+                  <div class="col"><small class="text-muted">Image URL</small></div>
+                  <div class="col"><small class="text-muted">Description (alt text)</small></div>
+                  <div class="col-auto" style="width: 42px;"></div>
+                </div>
+
+                <div id="image-list">
+                  <div class="image-row row g-2 mb-2 align-items-center">
+                    <div class="col">
+                      <input type="url" class="form-control image-url"
+                             placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control image-alt"
+                             placeholder="e.g. Front view">
+                    </div>
+                    <div class="col-auto">
+                      <div style="width: 34px;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="button" id="add-image-btn" class="btn btn-outline-secondary btn-sm mt-1">
+                  <i class="bi bi-plus-lg me-1"></i> Add another image
+                </button>
+              </div>
+
+              <div class="mb-4">
+                <label for="tags" class="form-label fw-semibold" style="font-size: 0.88rem;">Tags</label>
+                <input type="text" id="tags" class="form-control"
+                       placeholder="electronics, vintage, camera">
+                <div class="form-text">Comma-separated. Helps people find your listing.</div>
+              </div>
+
+              <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-warning fw-semibold flex-grow-1" style="padding: 10px;">
+                  <i class="bi bi-plus-circle me-1"></i>
+                  <span id="submit-text">Create listing</span>
+                </button>
+                <a href="/index.html" class="btn btn-outline-secondary">Cancel</a>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center text-muted py-4 mt-4 border-top small">
+    AuctionHouse &copy; 2026 – Student project using the Noroff API
+  </footer>
+
+  <script type="module" src="/src/pages/createListing.ts"></script>
+</body>
+</html>

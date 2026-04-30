@@ -1,18 +1,18 @@
 {
   "name": "auction-house",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3"
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1"
   },
   "devDependencies": {
+    "@types/node": "^20.14.0",
     "typescript": "^5.4.5",
-    "vite": "^8.0.10"
+    "vite": "^5.4.0"
   }
 }
