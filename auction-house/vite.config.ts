@@ -10,7 +10,7 @@ export default defineConfig({
         register: resolve(__dirname, "register.html"),
         listing: resolve(__dirname, "listing.html"),
         profile: resolve(__dirname, "profile.html"),
-        createListing: resolve(__dirname, "create-listing.html"),
+        createListing: resolve(__dirname, "create-listings.html"),
       },
     },
   },

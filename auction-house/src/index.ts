@@ -1,6 +1,12 @@
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/styles.css";
-import { getToken, getApiKey, getUserName, getCredits, clearAuth } from "./utils/storage";
+import {
+  getToken,
+  getApiKey,
+  getUserName,
+  getCredits,
+  clearAuth,
+} from "./utils/storage";
 
 function escapeHtml(value: string) {
   return value
@@ -33,7 +39,7 @@ export function setupNav() {
         </span>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/profile.html?user=${encodeURIComponent(userName)}">${safeUserName}</a>
+        <a class="nav-link" href="./profile.html?user=${encodeURIComponent(userName)}">${safeUserName}</a>
       </li>
       <li class="nav-item">
         <button id="logout-btn" class="btn btn-outline-light btn-sm">Log out</button>
@@ -42,10 +48,10 @@ export function setupNav() {
   } else {
     rightSideLinks = `
       <li class="nav-item">
-        <a class="btn btn-outline-light btn-sm me-1" href="/login.html">Log in</a>
+        <a class="btn btn-outline-light btn-sm me-1" href="./login.html">Log in</a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-warning btn-sm" href="/register.html">Register</a>
+        <a class="btn btn-warning btn-sm" href="./register.html">Register</a>
       </li>
     `;
   }
@@ -55,7 +61,7 @@ export function setupNav() {
   if (loggedIn) {
     newListingLink = `
       <li class="nav-item">
-        <a class="nav-link" href="/create-listing.html">+ New Listing</a>
+        <a class="nav-link" href="./create-listings.html">+ New Listing</a>
       </li>
     `;
   }
@@ -63,7 +69,7 @@ export function setupNav() {
   placeholder.innerHTML = `
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div class="container">
-        <a class="navbar-brand fw-bold text-warning" href="/index.html">
+        <a class="navbar-brand fw-bold text-warning" href="./index.html">
           <i class="bi bi-hammer me-1"></i> AuctionHouse
         </a>
 
@@ -76,7 +82,7 @@ export function setupNav() {
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/index.html">Browse</a>
+              <a class="nav-link" href="./index.html">Browse</a>
             </li>
             ${newListingLink}
           </ul>
@@ -94,7 +100,7 @@ export function setupNav() {
   if (logoutBtn) {
     logoutBtn.addEventListener("click", function () {
       clearAuth();
-      window.location.href = "/index.html";
+      window.location.href = "./index.html";
     });
   }
 }

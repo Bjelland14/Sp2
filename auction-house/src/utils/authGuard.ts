@@ -5,7 +5,7 @@ export function requireLogin() {
   const apiKey = getApiKey();
 
   if (!token || !apiKey) {
-    window.location.replace("/login.html");
+    window.location.replace("./login.html");
   }
 }
 
@@ -14,6 +14,6 @@ export function redirectIfLoggedIn() {
   const apiKey = getApiKey();
 
   if (token && apiKey) {
-    window.location.replace("/index.html");
+    window.location.replace("./index.html");
   }
 }

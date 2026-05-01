@@ -2,6 +2,6 @@ import { setupNav } from "../index";
 import { redirectIfLoggedIn } from "../utils/authGuard";
 import { setupRegisterForm } from "../events/registerEvents";
 
-redirectIfLoggedIn();
+// redirectIfLoggedIn();
 setupNav();
 setupRegisterForm();
