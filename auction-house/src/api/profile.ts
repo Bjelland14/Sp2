@@ -68,7 +68,7 @@ export async function getProfileBids(name: string) {
   }
 
   const result = await request(
-    "/auction/profiles/" + name + "/bids?_listing=true",
+    "/auction/profiles/" + name + "/bids?_listings=true",
     "GET",
     null,
     true

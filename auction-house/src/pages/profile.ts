@@ -38,10 +38,10 @@ async function loadPage(name: string, el: HTMLElement) {
     let bids: any[] = [];
 
     if (isOwnProfile) {
-      bids = await getProfileBids(name);
-      saveCredits(profile.credits);
+       bids = await getProfileBids(name);
+       console.log("Bids JSON:", JSON.stringify(bids, null, 2));
+       saveCredits(profile.credits);
     }
-
     let listingsHtml = '<p class="text-muted">No listings yet.</p>';
 
     if (listings.length > 0) {
