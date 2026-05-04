@@ -16,7 +16,7 @@ const currentUser = localStorage.getItem("userName");
 const isOwnProfile = currentUser === profileName;
 
 if (!profileName || !container) {
-  window.location.href = "/login.html";
+  window.location.href = "./login.html";
 } else {
   loadPage(profileName, container);
 }
@@ -38,10 +38,11 @@ async function loadPage(name: string, el: HTMLElement) {
     let bids: any[] = [];
 
     if (isOwnProfile) {
-       bids = await getProfileBids(name);
-       console.log("Bids JSON:", JSON.stringify(bids, null, 2));
-       saveCredits(profile.credits);
+      bids = await getProfileBids(name);
+      console.log("Bids JSON:", JSON.stringify(bids, null, 2));
+      saveCredits(profile.credits);
     }
+
     let listingsHtml = '<p class="text-muted">No listings yet.</p>';
 
     if (listings.length > 0) {
@@ -63,12 +64,21 @@ async function loadPage(name: string, el: HTMLElement) {
         let cards = "";
 
         for (let i = 0; i < bids.length; i++) {
-          if (bids[i].listing) {
-            cards += renderListingCard(bids[i].listing);
+          const listing =
+            bids[i].listing ||
+            bids[i]._listing ||
+            bids[i].listings?.[0];
+
+          if (listing) {
+            cards += renderListingCard(listing);
           }
         }
 
-        bidCards = '<div class="row row-cols-2 row-cols-md-4 g-3">' + cards + "</div>";
+        if (cards) {
+          bidCards = '<div class="row row-cols-2 row-cols-md-4 g-3">' + cards + "</div>";
+        } else {
+          bidCards = '<p class="text-muted">Bids found, but listings could not be loaded.</p>';
+        }
       }
 
       bidsSection = `
@@ -175,6 +185,7 @@ async function loadPage(name: string, el: HTMLElement) {
           if (err instanceof Error) {
             message = err.message;
           }
+
           showError("edit-message", message);
         }
       });
@@ -184,6 +195,7 @@ async function loadPage(name: string, el: HTMLElement) {
     if (err instanceof Error) {
       message = err.message;
     }
+
     el.innerHTML = '<div class="alert alert-danger">' + message + "</div>";
   }
 }
