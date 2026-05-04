@@ -47,8 +47,8 @@ export function renderProfileHeader(profile: Profile, isOwn: boolean) {
       onerror="this.src='https://placehold.co/1200x200?text=+'"
     >
 
-    <div class="d-flex align-items-end gap-3 mb-3" style="margin-top: -60px;">
-      <img
+<div class="d-flex align-items-end gap-3 mb-3" style="margin-top: -40px;">
+    <img
         src="${escapeHtml(avatarUrl)}"
         alt="${escapeHtml(profile.name)}"
         class="rounded-circle border border-4 border-white shadow"
