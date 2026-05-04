@@ -1,4 +1,6 @@
 import { placeBid } from "../api/bids";
+import { getProfile } from "../api/profile";
+import { getUserName, saveCredits } from "../utils/storage";
 import { showError, showSuccess, hideMessage } from "../ui/showMessage";
 
 export function setupBidForm(listingId: string) {
@@ -22,6 +24,13 @@ export function setupBidForm(listingId: string) {
 
     try {
       await placeBid(listingId, amount);
+
+      const userName = getUserName();
+
+      if (userName) {
+        const profile = await getProfile(userName);
+        saveCredits(profile.credits);
+      }
 
       showSuccess("bid-message", "Bid of " + amount + " credits placed!");
 

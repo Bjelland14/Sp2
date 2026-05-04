@@ -1,6 +1,6 @@
 import { setupNav } from "../index";
 import { requireLogin } from "../utils/authGuard";
-import { getProfile, updateProfile, getProfileListings, getProfileBids } from "../api/profiles";
+import { getProfile, updateProfile, getProfileListings, getProfileBids } from "../api/profile";
 import { renderProfileHeader } from "../ui/renderProfile";
 import { renderListingCard } from "../ui/renderListingCard";
 import { showError } from "../ui/showMessage";
@@ -23,11 +23,11 @@ if (!profileName || !container) {
 
 function escapeHtml(value: string) {
   return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 async function loadPage(name: string, el: HTMLElement) {
