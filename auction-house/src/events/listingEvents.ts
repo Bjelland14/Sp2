@@ -216,7 +216,7 @@ export function setupListingForm(editId: string | null) {
 
     try {
       if (editId) {
-        await updateListing(editId, title, description, media);
+        await updateListing(editId, title, description, media, tags);
       } else {
         const isoDate = new Date(endsAt).toISOString();
         await createListing(title, description, isoDate, media, tags);

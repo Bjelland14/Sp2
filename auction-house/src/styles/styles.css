@@ -59,3 +59,21 @@ body {
   font-weight: 600;
 }
 
+/* Mobile fixes */
+@media (max-width: 576px) {
+  .hero-banner {
+    padding: 1.5rem !important;
+  }
+
+  .listing-card:hover {
+    transform: none;
+  }
+
+  .carousel-item img {
+    height: 280px !important;
+  }
+
+  .btn {
+    min-height: 42px;
+  }
+}

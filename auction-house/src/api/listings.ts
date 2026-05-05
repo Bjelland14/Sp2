@@ -53,11 +53,8 @@ export async function createListing(
     description,
     endsAt,
     tags,
+    media,
   };
-
-  if (media.length > 0) {
-    body.media = media;
-  }
 
   const result = await request("/auction/listings", "POST", body, true);
 
@@ -72,7 +69,8 @@ export async function updateListing(
   id: string,
   title: string,
   description: string,
-  media: { url: string; alt: string }[]
+  media: { url: string; alt: string }[],
+  tags: string[]
 ) {
   if (!id) {
     throw new Error("Missing listing ID");
@@ -81,11 +79,9 @@ export async function updateListing(
   const body: any = {
     title,
     description,
+    tags,
+    media,
   };
-
-  if (media.length > 0) {
-    body.media = media;
-  }
 
   const result = await request("/auction/listings/" + id, "PUT", body, true);
 
