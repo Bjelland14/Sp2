@@ -1,4 +1,4 @@
-import { Bid } from "../types";
+import { Bid } from "../../types";
 import { formatDate } from "../utils/formatDate";
 
 function escapeHtml(value: string) {

@@ -1,4 +1,4 @@
-import { Profile } from "../types";
+import { Profile } from "../../types";
 
 function escapeHtml(value: string) {
   return value
@@ -51,7 +51,7 @@ export function renderProfileHeader(profile: Profile, isOwn: boolean) {
     <img
         src="${escapeHtml(avatarUrl)}"
         alt="${escapeHtml(profile.name)}"
-        class="rounded-circle border border-4 border-white shadow"
+        class="rounded-circle border-4 border-white shadow"
         style="width: 90px; height: 90px; object-fit: cover;"
         onerror="this.src='https://placehold.co/100x100?text=?'"
       >
