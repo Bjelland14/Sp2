@@ -1,60 +1,38 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
-@import "bootstrap-icons/font/bootstrap-icons.css";
+export type Media = {
+  url: string;
+  alt?: string;
+};
 
-:root {
-  --brand-dark: #1a1a2e;
-  --brand-blue: #16213e;
-  --brand-gold: #e8a838;
-}
+export type Bid = {
+  id: string;
+  amount: number;
+  created: string;
+  bidder?: {
+    name: string;
+  };
+};
 
-body {
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: #f8f9fa;
-}
+export type Listing = {
+  id: string;
+  title: string;
+  description?: string;
+  endsAt: string;
+  media?: Media[];
+  seller?: {
+    name: string;
+  };
+  bids?: Bid[];
+  _count?: {
+    bids: number;
+  };
+  tags?: string[];
+};
 
-/* Navbar */
-.navbar {
-  background-color: var(--brand-dark) !important;
-}
-
-/* Hero gradient */
-.hero-banner {
-  background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-blue) 100%);
-  border-radius: 12px;
-}
-
-/* Listing cards */
-.listing-card {
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.listing-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14) !important;
-}
-
-/* Gold button */
-.btn-warning {
-  background-color: var(--brand-gold);
-  border-color: var(--brand-gold);
-  color: var(--brand-dark);
-  font-weight: 600;
-}
-
-.btn-warning:hover,
-.btn-warning:focus {
-  background-color: #d4952e;
-  border-color: #d4952e;
-  color: var(--brand-dark);
-}
-
-/* Tag filter active state */
-.tag-filter.active {
-  background-color: var(--brand-gold);
-  border-color: var(--brand-gold);
-  color: var(--brand-dark);
-  font-weight: 600;
-}
+export type Profile = {
+  name: string;
+  email?: string;
+  bio?: string;
+  credits: number;
+  avatar?: Media;
+  banner?: Media;
+};

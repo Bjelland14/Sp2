@@ -1,0 +1,1 @@
+Used Bootstrap Icons library for UI icons.

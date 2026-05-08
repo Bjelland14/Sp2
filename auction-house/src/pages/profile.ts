@@ -63,16 +63,21 @@ async function loadPage(name: string, el: HTMLElement) {
       if (bids.length > 0) {
         let cards = "";
 
-        for (let i = 0; i < bids.length; i++) {
-          const listing =
-            bids[i].listing ||
-            bids[i]._listing ||
-            bids[i].listings?.[0];
+       for (let i = 0; i < bids.length; i++) {
+        const bid = bids[i];
 
-          if (listing) {
-            cards += renderListingCard(listing);
-          }
-        }
+        const listing =
+        bid.listing ||
+        bid._listing ||
+        bid.listings?.[0];
+
+       if (listing) {
+        cards += renderListingCard({
+          ...listing,
+          bids: listing.bids || [bid],
+        });
+      }
+    }
 
         if (cards) {
           bidCards = '<div class="row row-cols-2 row-cols-md-4 g-3">' + cards + "</div>";

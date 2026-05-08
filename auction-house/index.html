@@ -12,23 +12,26 @@
   <main class="container py-4">
 
     <!-- Hero search -->
-    <div class="hero-banner text-white text-center p-4 mb-4">
-      <h1 class="fw-bold mb-1" style="font-size: 1.8rem;">Find Your Next Treasure</h1>
-      <p style="color: rgba(255,255,255,0.65); font-size: 0.95rem;" class="mb-3">
-        Browse thousands of student auction listings
-      </p>
-      <div class="input-group mx-auto" style="max-width: 500px;">
-        <input
-          type="text"
-          id="search-input"
-          class="form-control form-control-lg"
-          placeholder="Search listings…"
-        >
-        <button id="search-btn" class="btn btn-warning fw-semibold">
-          <i class="bi bi-search"></i> Search
-        </button>
-      </div>
-    </div>
+<div class="hero-banner text-white text-center p-4 mb-4">
+  <h1 class="fw-bold mb-1 hero-title">Find Your Next Treasure</h1>
+
+  <p class="mb-3 hero-text">
+    Browse thousands of student auction listings
+  </p>
+
+  <div class="input-group mx-auto search-bar">
+    <input
+      type="text"
+      id="search-input"
+      class="form-control form-control-lg"
+      placeholder="Search listings…"
+    >
+
+    <button id="search-btn" class="btn btn-warning fw-semibold">
+      <i class="bi bi-search"></i> Search
+    </button>
+  </div>
+</div>
 
     <!-- Tag filter -->
     <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
@@ -64,7 +67,7 @@
   </main>
 
   <footer class="text-center text-muted py-4 mt-4 border-top small">
-    AuctionHouse &copy; 2026 – Student project using the Noroff API
+    AuctionHouse &copy; 2026 
   </footer>
 
   <script type="module" src="/src/pages/listings.ts"></script>
