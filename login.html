@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AuctionHouse – Log in</title>
+  <script type="module" crossorigin src="/SP2/assets/login-CE1R2CrA.js"></script>
+  <link rel="modulepreload" crossorigin href="/SP2/assets/showMessage-7BOvKEKx.js">
+  <link rel="modulepreload" crossorigin href="/SP2/assets/auth-DqlEzOzy.js">
+  <link rel="modulepreload" crossorigin href="/SP2/assets/profile-Dqhqk4vy.js">
+  <link rel="stylesheet" crossorigin href="/SP2/assets/showMessage-2emwwyZK.css">
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-sm-10 col-md-6 col-lg-5">
+
+        <div class="card shadow-sm border-0" style="border-radius: 10px;">
+          <div class="card-body p-4">
+
+            <h2 class="fw-bold text-center mb-1">Welcome back</h2>
+            <p class="text-center text-muted mb-4" style="font-size: 0.9rem;">
+              Log in to your AuctionHouse account
+            </p>
+
+            <div id="form-message" hidden></div>
+
+            <form id="login-form" novalidate>
+              <div class="mb-3">
+                <label for="email" class="form-label fw-semibold" style="font-size: 0.88rem;">Email address</label>
+                <input type="email" id="email" class="form-control"
+                       placeholder="you@stud.noroff.no" required autocomplete="email">
+              </div>
+              <div class="mb-4">
+                <label for="password" class="form-label fw-semibold" style="font-size: 0.88rem;">Password</label>
+                <input type="password" id="password" class="form-control"
+                       placeholder="Your password" required autocomplete="current-password">
+              </div>
+              <button type="submit" class="btn btn-warning w-100 fw-semibold" style="padding: 10px;">
+                Log in
+              </button>
+            </form>
+
+            <hr class="my-3">
+            <p class="text-center text-muted small">
+              Don't have an account? <a href="/register.html">Register here</a>
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

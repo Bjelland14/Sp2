@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AuctionHouse – Register</title>
+  <script type="module" crossorigin src="/SP2/assets/register-gYE13DII.js"></script>
+  <link rel="modulepreload" crossorigin href="/SP2/assets/showMessage-7BOvKEKx.js">
+  <link rel="modulepreload" crossorigin href="/SP2/assets/auth-DqlEzOzy.js">
+  <link rel="stylesheet" crossorigin href="/SP2/assets/showMessage-2emwwyZK.css">
+</head>
+
+<body class="bg-light">
+
+  <div id="nav-placeholder"></div>
+
+  <main class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+          <div class="card-body">
+
+            <h1 class="h3 mb-3 text-center">Create account</h1>
+
+            <form id="register-form">
+              <div class="mb-3">
+                <label for="name" class="form-label">Username</label>
+                <input id="name" name="name" class="form-control" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="email" class="form-control" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" name="password" type="password" class="form-control" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="confirm-password" class="form-label">Confirm password</label>
+                <input id="confirm-password" name="confirm-password" type="password" class="form-control" required />
+              </div>
+
+              <button class="btn btn-warning w-100" type="submit">
+                Register
+              </button>
+            </form>
+
+            <div id="form-message" class="mt-3 text-center"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center text-muted py-4 mt-4 border-top small">
+    AuctionHouse &copy; 2026 
+  </footer>
+
+
+</body>
+</html>
