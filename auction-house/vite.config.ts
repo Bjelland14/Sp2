@@ -2,8 +2,6 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 
 export default defineConfig({
-  base: "/Sp2/",
-
   build: {
     rollupOptions: {
       input: {
