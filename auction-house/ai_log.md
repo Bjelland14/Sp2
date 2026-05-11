@@ -20,7 +20,6 @@ AI was used as a support tool during development of the AuctionHouse project. Th
 - Structuring reusable UI components such as listing cards and profile rendering
 - Debugging profile page functionality and bid rendering
 - Reviewing authentication flow and guest restrictions
-- Improving HTML structure and accessibility
 - Clarification of assignment requirements and user stories
 
 ## What AI Was NOT Used For
