@@ -81,13 +81,14 @@ export function renderListingCard(listing: ListingCardData) {
         <div class="card h-100 shadow-sm listing-card">
 
           <div class="position-relative">
-            <img
-              src="${escapeHtml(image)}"
-              alt="${escapeHtml(imageAlt)}"
-              class="card-img-top"
-              style="height: 200px; object-fit: cover;"
-              onerror="this.src='https://placehold.co/400x220?text=No+Image'"
-            >
+           <img
+            src="${escapeHtml(image)}"
+            alt="${escapeHtml(imageAlt)}"
+            class="card-img-top"
+            style="height: 200px; object-fit: cover;"
+            loading="lazy"
+            onerror="this.src='https://placehold.co/400x220?text=No+Image'"
+  >
 
             <span class="badge ${badgeClass} position-absolute top-0 end-0 m-2">
               ${escapeHtml(badgeText)}
