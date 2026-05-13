@@ -10,7 +10,7 @@ AuctionHouse is a student auction web application built for the Noroff Semester 
 ## GitHub Repository
 
   
-[GitHub repo]()
+https://github.com/Bjelland14/Sp2
 
 ## Design
 
@@ -20,8 +20,12 @@ Figma style guide and prototypes:
 ## Project Board
 
 GitHub Projects Kanban board:  
-[Kanban board]()
 
+https://github.com/users/Bjelland14/projects/12
+
+Gant Chart: 
+
+https://github.com/users/Bjelland14/projects/12/views/4
 ## Features
 
 - Browse auction listings without logging in
