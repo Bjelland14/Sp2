@@ -33,3 +33,4 @@ Some parts of the project (especially the Bootstrap carousel and API data handli
 ## Compliance With AI Policy
 
 AI was used within the allowed guidelines for the assignment. It was primarily used for explanations, debugging assistance, code structure suggestions, and clarification of frontend concepts. All final code was reviewed, tested, and adapted manually. No code was submitted without understanding how it worked.
+Men 

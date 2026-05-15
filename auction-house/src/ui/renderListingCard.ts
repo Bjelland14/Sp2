@@ -30,7 +30,7 @@ export function renderListingCard(listing: ListingCardData) {
   let image = "https://placehold.co/400x220?text=No+Image";
   let imageAlt = listing.title || "Listing image";
 
-  // Use first image if available
+  // Get first listing image
   if (listing.media && listing.media[0] && listing.media[0].url) {
     image = listing.media[0].url;
     imageAlt = listing.media[0].alt || listing.title || "Listing image";
@@ -53,7 +53,7 @@ export function renderListingCard(listing: ListingCardData) {
   }
 
   if (bidCount === 0 && listing.bids) {
-    bidText = "Bid placed";
+    bidText = "No bids yet";
   }
 
   // Time badge
